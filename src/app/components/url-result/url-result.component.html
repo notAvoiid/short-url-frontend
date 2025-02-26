@@ -1,0 +1,9 @@
+@if (result) {
+    <div class="result-container">
+        <p class="success-message">URL encurtada:</p>
+        <div class="result-box">
+            <a [href]="result" target="_blank" class="short-url">{{ result }}</a>
+            <app-copy-btn [text]="result"></app-copy-btn>
+        </div>
+    </div>
+}

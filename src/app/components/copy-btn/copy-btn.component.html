@@ -1,0 +1,8 @@
+<div class="copy-container">
+    <button (click)="copyToClipboard()" class="copy-btn">
+        {{ isCopied ? '✓ Copiado!' : '📋 Copiar' }}
+    </button>
+    @if (isCopied) {
+        <div class="copy-feedback">✓ Copiado para a área de transferência!</div>
+    }
+</div>

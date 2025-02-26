@@ -1,0 +1,34 @@
+@import '../../../styles/variables.scss';
+
+.result-container {
+    margin-top: 2rem;
+    text-align: center;
+  
+    .success-message {
+      color: $primary-color;
+      font-weight: bold;
+    }
+  
+    .result-box {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1rem;
+  
+      .short-url {
+        color: #000000;
+        text-decoration: none;
+        word-break: break-all;
+        transition: color 0.2s ease;
+  
+        &:hover {
+          color: $hover-color;
+          text-decoration: underline;
+          text-decoration-color: $primary-color;
+        }
+      }
+    }
+  }
+  
+  

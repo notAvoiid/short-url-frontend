@@ -1,0 +1,64 @@
+@import '../../../styles/variables.scss';
+
+@keyframes fadeInOutDown {
+  0% { opacity: 0; transform: translate(-50%, -10px); }
+  15% { opacity: 1; transform: translate(-50%, 0); }
+  90% { opacity: 1; transform: translate(-50%, 0); }
+  100% { opacity: 0; transform: translate(-50%, 10px); }
+}
+
+@mixin transition($property: all, $duration: 0.3s) {
+  transition: $property $duration ease-in-out;
+}
+
+.copy-container {
+    position: relative;
+    display: inline-block;
+  
+    .copy-feedback {
+      position: absolute;
+      top: 50px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: $hover-copy-color;
+      color: white;
+      padding: 8px 12px;
+      border-radius: 4px;
+      font-size: 0.9rem;
+      animation: fadeInOutDown 2s ease;
+      white-space: nowrap;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  
+      &::after {
+        content: '';
+        position: absolute;
+        top: -16px;
+        left: 50%;
+        margin-left: -5px;
+        border-width: 5px;
+        border-style: solid;
+        border-color: $hover-copy-color transparent transparent transparent;
+        transform: rotate(180deg);
+      }
+    }
+  }
+  
+  .copy-btn {
+    background-color: $primary-color;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    @include transition(background-color);
+    min-width: 100px;
+    white-space: nowrap;
+  
+    &:hover {
+      background-color: $hover-copy-color;
+    }
+  
+    &:active {
+      transform: scale(0.95);
+    }
+  }

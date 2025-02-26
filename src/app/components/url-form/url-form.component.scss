@@ -1,21 +1,14 @@
 @use 'sass:color';
 @import '../../../styles/variables.scss';
 
-@mixin transition($property: all, $duration: 0.3s) {
-  transition: $property $duration ease-in-out;
-}
-
-// Keyframes
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
 @keyframes fadeInOutDown {
   0% { opacity: 0; transform: translate(-50%, -10px); }
   15% { opacity: 1; transform: translate(-50%, 0); }
   90% { opacity: 1; transform: translate(-50%, 0); }
   100% { opacity: 0; transform: translate(-50%, 10px); }
+}
+@mixin transition($property: all, $duration: 0.3s) {
+  transition: $property $duration ease-in-out;
 }
 
 :host {
@@ -125,150 +118,8 @@
   }
 }
 
-.loading-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(255, 255, 255, 0.8);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
 
-  .global-spinner {
-    width: 40px;
-    height: 40px;
-    border: 4px solid #f3f3f3;
-    border-top: 4px solid $primary-color;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-  }
-}
 
-.result-container {
-  margin-top: 2rem;
-  text-align: center;
-
-  .success-message {
-    color: $primary-color;
-    font-weight: bold;
-  }
-
-  .result-box {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-    margin-top: 1rem;
-
-    .short-url {
-      color: #000000;
-      text-decoration: none;
-      word-break: break-all;
-      transition: color 0.2s ease;
-
-      &:hover {
-        color: $hover-color;
-        text-decoration: underline;
-        text-decoration-color: $primary-color;
-      }
-    }
-  }
-}
-
-.copy-container {
-  position: relative;
-  display: inline-block;
-
-  .copy-feedback {
-    position: absolute;
-    top: 50px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: $hover-copy-color;
-    color: white;
-    padding: 8px 12px;
-    border-radius: 4px;
-    font-size: 0.9rem;
-    animation: fadeInOutDown 2s ease;
-    white-space: nowrap;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-
-    &::after {
-      content: '';
-      position: absolute;
-      top: -16px;
-      left: 50%;
-      margin-left: -5px;
-      border-width: 5px;
-      border-style: solid;
-      border-color: $hover-copy-color transparent transparent transparent;
-      transform: rotate(180deg);
-    }
-  }
-}
-
-.copy-btn {
-  background-color: $primary-color;
-  color: white;
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
-  cursor: pointer;
-  @include transition(background-color);
-  min-width: 100px;
-  white-space: nowrap;
-
-  &:hover {
-    background-color: $hover-copy-color;
-  }
-
-  &:active {
-    transform: scale(0.95);
-  }
-}
-
-.error-container {
-  padding: 1rem;
-  margin: 1rem 0;
-  border: 1px solid #f5c6cb;
-  border-radius: 4px;
-  background: #f8d7da;
-  color: #721c24;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-
-  .error-icon {
-    font-size: 1.5rem;
-    flex-shrink: 0;
-  }
-
-  .error-content {
-    flex: 1;
-
-    .error-title {
-      margin: 0 0 0.5rem;
-      font-size: 1.1rem;
-      font-weight: 500;
-    }
-
-    .error-message {
-      margin: 0;
-      font-size: 0.9rem;
-      line-height: 1.4;
-    }
-
-    .error-note {
-      margin: 0.5rem 0 0;
-      font-size: 0.8rem;
-      opacity: 0.8;
-      font-style: italic;
-    }
-  }
-}
 
 @media (max-width: 768px) {
   :host {
