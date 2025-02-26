@@ -1,0 +1,84 @@
+<div class="container">
+
+  <h1>🔗 Encurtador de URL</h1>
+  
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form-container">
+    <div class="form-group">
+      <label for="url">URL para encurtar:</label>
+      <input 
+        type="url" 
+        id="url" 
+        formControlName="url" 
+        placeholder="www.exemplo.com"
+        class="form-input"
+        [ngClass]="{ 'error-input': form.get('url')?.invalid && form.get('url')?.touched }"
+      >
+      <div *ngIf="form.get('url')?.invalid && form.get('url')?.touched" class="error-message">
+        Por favor, insira uma URL válida (ex: exemplo.com ou http://exemplo.com)
+      </div>
+    </div>
+
+
+    <!-- Tempo de expiração -->
+    <div class="form-group">
+      <label for="minutes">Tempo de expiração (minutos):</label>
+      <input 
+        type="number" 
+        id="minutes" 
+        formControlName="minutes" 
+        min="1"
+        class="form-input"
+      >
+    </div>
+
+
+    <!-- Botão de submit -->
+    <button 
+      type="submit" 
+      class="submit-btn"
+      [disabled]="!form.valid || isLoading"
+    >
+      <span *ngIf="!isLoading">Encurtar URL</span>
+      <span *ngIf="isLoading" class="loading-content">
+        <span class="spinner"></span>
+        Processando...
+      </span>
+    </button>
+  </form>
+
+
+  <!-- Resultado -->
+  <div *ngIf="result" class="result-container">
+    <p class="success-message">URL encurtada:</p>
+      <div class="result-box">
+        <a [href]="result" target="_blank" class="short-url">{{ result }}</a>
+        <div class="copy-container">
+          <button (click)="copyToClipboard()" class="copy-btn">
+            {{ isCopied ? '✓ Copiado!' : '📋 Copiar' }}
+          </button>
+          <div *ngIf="isCopied" class="copy-feedback">✓ Copiado para a área de transferência!</div>
+        </div>
+      </div>
+  </div>
+
+  <!-- Erros -->
+  <div *ngIf="error" class="error-container">
+    <div class="error-icon">⚠️</div>
+    <div class="error-content">
+      <h3 class="error-title">Something Went Wrong</h3>
+      <p class="error-message">
+        We encountered an unexpected issue. Please try again later.
+      </p>
+      <p class="error-note">
+        If the problem persists, contact support.
+      </p>
+  </div>
+  </div>
+
+
+  <div *ngIf="isLoading" class="loading-overlay">
+    <div class="global-spinner"></div>
+  </div>
+  
+</div>
+
