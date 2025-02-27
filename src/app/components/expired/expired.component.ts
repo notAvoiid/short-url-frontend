@@ -9,7 +9,6 @@ import { Router } from '@angular/router';
 })
 export class ExpiredComponent {
 
-
   constructor(private router: Router) {}
 
   navigateToHome() {
