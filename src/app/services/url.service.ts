@@ -13,7 +13,7 @@ export interface ShortenResponse {
   providedIn: 'root'
 })
 export class UrlService {
-  private apiUrl = 'http://localhost:8080/api';
+  private apiUrl = 'https://short-url-ur3d.onrender.com/api';
 
   constructor(
     private http: HttpClient,
